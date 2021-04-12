@@ -145,6 +145,7 @@ foreach ($agentId in 1..$AgentCount)
         "--url", $AgentUrl,
         "--auth", "PAT",
         "--token", $AgentToken,
+        "--pool", $AgentPool,
         "--work", "_work",
         "--runAsService",
         "--replace"
