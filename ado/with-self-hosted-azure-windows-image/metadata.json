@@ -1,0 +1,7 @@
+{
+    "itemDisplayName": "Provision a self-hosted build server for Azure DevOps",
+    "description": "This template will create a Windows Server 2019 VM instance with Azure DevOps Build Agents and VS 2019 Buildtools. The template will also create the inbound rules for RDP & Https",
+    "summary": "Provision a self-hosted build server for Azure DevOps",
+    "githubUsername": "ehagen",
+    "dateUpdated": "2021-04-10"
+}
