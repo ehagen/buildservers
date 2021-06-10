@@ -107,7 +107,7 @@
         "subnetName": "[concat(parameters('vmName'),'_subnet')]",
         "subnetPrefix": "10.0.0.0/24",
         "networkSecurityGroupName": "[concat(parameters('vmName'),'_nsg')]",
-        "newStorageAccountName": "[toLower(concat(parameters('vmName'),'imagestorage'))]",
+        "newStorageAccountName": "[toLower(concat(parameters('vmName'),'imgstg'))]",
         "storageAccountType": "Standard_LRS",
         "publicIPAddressName": "[concat(parameters('vmName'),'_pubip')]",
         "publicIPAddressType": "Dynamic",

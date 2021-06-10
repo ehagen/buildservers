@@ -67,6 +67,9 @@ choco install azure-cli --confirm --limit-output --timeout 216000
 Write-Host "Install Notepad PlusPlus" -ForegroundColor Cyan
 choco install Install notepadplusplus --confirm --limit-output --timeout 216000
 
+Write-Host "Install Reportgenerator global dotnet plugin" -ForegroundColor Cyan
+try { dotnet tool install dotnet-reportgenerator-globaltool --global 2>&1 } catch { Write-Warning "Issue installing global tool reportgenerator $($_.Exception.Message)"; $LastExitCode = 0 }
+
 Write-Host "Downloading Azure Pipelines agent..." -ForegroundColor Cyan
 $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(":$AgentToken"))
 $package = Invoke-RestMethod -Headers @{Authorization = ("Basic $base64AuthInfo") } "$AgentUrl/_apis/distributedtask/packages/agent?platform=win-x64&`$top=1"
@@ -79,6 +82,10 @@ if ($null -eq $packageUrl)
 New-Item "\temp" -ItemType directory -ErrorAction Ignore | Out-Null
 $wc = New-Object System.Net.WebClient
 $wc.DownloadFile($packageUrl, "\temp\agent.zip")
+if (!(Test-Path '\temp\agent.zip') )
+{
+    Throw "Unable to find downloaded Agent from Azure DevOps ($AgentUrl), is your token correct and still valid!"
+}
 
 Write-Host "Installing Azure Devops Agents..." -ForegroundColor Cyan
 
