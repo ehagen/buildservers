@@ -54,6 +54,9 @@ Write-Host "   Powershell: $($psversiontable.PsVersion)"
 Write-Host "Currentfolder: $(Get-Location)"
 Write-Host ""
 
+Write-Host "Updating OS Disk if necessary"
+Resize-Partition -DriveLetter 'c' -Size  (Get-PartitionSupportedSize -DriveLetter 'c').SizeMax -ErrorAction Ignore
+
 Write-Host "Install Choco" -ForegroundColor Cyan
 Set-ExecutionPolicy Bypass -Scope Process -Force;
 Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
